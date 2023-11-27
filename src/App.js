@@ -3,6 +3,7 @@ import NavBar from "./components/layout/NavBar.js";
 import Product from "./components/Product/Product.js";
 import Footer from "./components/layout/Footer.js";
 import Cart from "./components/Cart/Cart.js";
+import ContextProvider from "./Store/ContextProvider.js";
 
 const productsArr = [
   {
@@ -77,7 +78,7 @@ function App() {
     setCartVisibility(false);
   };
   return (
-    <Fragment>
+    <ContextProvider>
       <header>
         <NavBar onShow={handleCart} />
         {cartShow && <Cart handelHide={handleHideCart} />}
@@ -88,7 +89,7 @@ function App() {
       <footer>
         <Footer />
       </footer>
-    </Fragment>
+    </ContextProvider>
   );
 }
 

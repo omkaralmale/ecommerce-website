@@ -1,39 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Modal, Button, ListGroup, Image } from "react-bootstrap";
-
-const cartItems = [
-  {
-    title: "Colors",
-
-    price: 100,
-
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
-
-    quantity: 2,
-  },
-
-  {
-    title: "Black and white Colors",
-
-    price: 50,
-
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
-
-    quantity: 3,
-  },
-
-  {
-    title: "Yellow and Black Colors",
-
-    price: 70,
-
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
-
-    quantity: 1,
-  },
-];
+import cartContext from "../../Store/cart-context";
 
 const Cart = (props) => {
+  const context = useContext(cartContext);
   return (
     <>
       <Modal show={true} onHide={props.handelHide}>
@@ -42,7 +12,7 @@ const Cart = (props) => {
         </Modal.Header>
         <Modal.Body>
           <ListGroup variant="flush">
-            {cartItems.map((item, index) => (
+            {context.products.map((item, index) => (
               <ListGroup.Item key={index}>
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <Image
@@ -67,10 +37,30 @@ const Cart = (props) => {
                       Price: ${item.price} | Qty: {item.quantity}
                     </p>
                   </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      marginLeft: "10em",
+                    }}
+                  >
+                    <Button>Remove</Button>
+                  </div>
                 </div>
               </ListGroup.Item>
             ))}
           </ListGroup>
+          <div
+            style={{
+              marginTop: "20px",
+              textAlign: "right",
+              fontSize: "24px",
+            }}
+          >
+            Total Cost:{" "}
+            <strong style={{ color: "red", fontSize: "24px" }}>
+              ${context.total}
+            </strong>
+          </div>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={props.handelHide}>

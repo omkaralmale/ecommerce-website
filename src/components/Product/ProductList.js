@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/esm/Button";
+import cartContext from "../../Store/cart-context";
 
 const ProductList = (props) => {
+  const context = useContext(cartContext);
+  const handleAdd = () => {
+    context.addProduct({
+      id: props.imageUrl,
+      title: props.title,
+      price: props.price,
+      imageUrl: props.imageUrl,
+      quantity: 1,
+    });
+  };
   const imageStyle = {
     overflow: "hidden",
   };
@@ -28,7 +39,7 @@ const ProductList = (props) => {
       >
         <Card.Img
           variant="top"
-          src={props.Url}
+          src={props.imageUrl}
           style={{ ...zoomImageStyle }}
           alt={props.title}
         />
@@ -38,7 +49,9 @@ const ProductList = (props) => {
         <Card.Text style={{ color: "red", fontSize: "28px" }}>
           ${props.price}
         </Card.Text>
-        <Button variant="warning">Add To Buy</Button>
+        <Button variant="warning" onClick={handleAdd}>
+          Add To Buy
+        </Button>
       </Card.Body>
     </Card>
   );
