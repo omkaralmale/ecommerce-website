@@ -12,10 +12,10 @@ const Product = (props) => {
   ));
 
   const rows = [];
-  for (let i = 0; i < products.length; i += 5) {
+  for (let i = 0; i < products.length; i += 4) {
     rows.push(
       <Row key={i} className="justify-content-center">
-        {products.slice(i, i + 5)}
+        {products.slice(i, i + 4)}
       </Row>
     );
   }

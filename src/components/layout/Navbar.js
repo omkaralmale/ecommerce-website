@@ -4,7 +4,8 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import img from "../../icons8-shop-96.png";
 import CartButton from "../UI/CartButton";
-function BasicExample() {
+
+const NavBar = (props) => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
@@ -31,11 +32,11 @@ function BasicExample() {
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          <CartButton />
+          <CartButton onShow={props.onShow} />
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
-}
+};
 
-export default BasicExample;
+export default NavBar;

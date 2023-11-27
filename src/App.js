@@ -1,47 +1,86 @@
-import "./App.css";
-import React, { Fragment } from "react";
-import Navbar from "./components/layout/Navbar.js";
+import React, { Fragment, useState } from "react";
+import NavBar from "./components/layout/NavBar.js";
 import Product from "./components/Product/Product.js";
 import Footer from "./components/layout/Footer.js";
+import Cart from "./components/Cart/Cart.js";
 
 const productsArr = [
   {
-    title: "Colors",
-
+    title: "Product 1",
+    price: 120,
+    imageUrl:
+      "https://media.istockphoto.com/id/653003428/photo/fashionable-clothes-in-a-boutique-store-in-london.webp?b=1&s=170667a&w=0&k=20&c=Neqdqli-vKAnG2VSfQVRSGXocaUixRz9JtqEAVs3Ndc=",
+  },
+  {
+    title: "Product 2",
+    price: 80,
+    imageUrl:
+      "https://images.unsplash.com/photo-1700478654842-fe8b07c3f2f3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyNHx8fGVufDB8fHx8fA%3D%3D",
+  },
+  {
+    title: "Product 3",
+    price: 150,
+    imageUrl:
+      "https://media.istockphoto.com/id/471973362/photo/clothesline-and-laundry.webp?b=1&s=170667a&w=0&k=20&c=QH1mGMh4EPx6vPnTUsFJbiS_Y1v8DOOw2iTxsL4j9sk=",
+  },
+  {
+    title: "Product 4",
     price: 100,
-
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
+    imageUrl:
+      "https://media.istockphoto.com/id/1577689348/photo/happy-young-indian-couple-wearing-traditional-cloths-holding-red-gift-boxes-celebrating-of.webp?b=1&s=170667a&w=0&k=20&c=l4D-ULqRjIAlcrEL9hmv1sZjoZTKlLAHXRYP1hr2dLA=",
   },
-
   {
-    title: "Black and white Colors",
-
-    price: 50,
-
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
+    title: "Product 5",
+    price: 200,
+    imageUrl:
+      "https://images.unsplash.com/photo-1682686579976-879b74d6d7ea?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyMXx8fGVufDB8fHx8fA%3D%3D",
   },
-
   {
-    title: "Yellow and Black Colors",
-
-    price: 70,
-
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
+    title: "Product 6",
+    price: 90,
+    imageUrl:
+      "https://images.unsplash.com/photo-1700740760502-f28b1769c8d3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyMHx8fGVufDB8fHx8fA%3D%3D",
   },
-
   {
-    title: "Blue Color",
-
-    price: 100,
-
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
+    title: "Product 7",
+    price: 180,
+    imageUrl:
+      "https://images.unsplash.com/photo-1700910290958-c58b42601b32?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHx8",
+  },
+  {
+    title: "Product 8",
+    price: 130,
+    imageUrl:
+      "https://images.unsplash.com/photo-1699614614513-2eb602381f0b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1fHx8ZW58MHx8fHx8",
+  },
+  {
+    title: "Product 9",
+    price: 110,
+    imageUrl:
+      "https://images.unsplash.com/photo-1683009426501-028aabdd7b8a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHw2fHx8ZW58MHx8fHx8",
+  },
+  {
+    title: "Product 10",
+    price: 95,
+    imageUrl:
+      "https://images.unsplash.com/photo-1700902741852-ecf2bd2c26eb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0fHx8ZW58MHx8fHx8",
   },
 ];
+
 function App() {
+  const [cartShow, setCartVisibility] = useState(false);
+
+  const handleCart = () => {
+    setCartVisibility(true);
+  };
+  const handleHideCart = () => {
+    setCartVisibility(false);
+  };
   return (
     <Fragment>
       <header>
-        <Navbar />
+        <NavBar onShow={handleCart} />
+        {cartShow && <Cart handelHide={handleHideCart} />}
       </header>
       <main>
         <Product items={productsArr} />
