@@ -4,6 +4,9 @@ import cartContext from "../../Store/cart-context";
 
 const Cart = (props) => {
   const context = useContext(cartContext);
+  const handleRemove = (event) => {
+    context.removeProduct(event.target.value);
+  };
   return (
     <>
       <Modal show={true} onHide={props.handelHide}>
@@ -34,7 +37,7 @@ const Cart = (props) => {
                       {item.title}
                     </p>
                     <p style={{ margin: "0" }}>
-                      Price: ${item.price} | Qty: {item.quantity}
+                      Price: ${item.price} | Qty: {item.qty}
                     </p>
                   </div>
                   <div
@@ -43,7 +46,9 @@ const Cart = (props) => {
                       marginLeft: "10em",
                     }}
                   >
-                    <Button>Remove</Button>
+                    <Button onClick={handleRemove} value={item.imageUrl}>
+                      Remove
+                    </Button>
                   </div>
                 </div>
               </ListGroup.Item>

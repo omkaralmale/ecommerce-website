@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import NavBar from "./components/layout/NavBar.js";
 import Product from "./components/Product/Product.js";
 import Footer from "./components/layout/Footer.js";

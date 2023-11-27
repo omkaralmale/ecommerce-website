@@ -11,7 +11,7 @@ const ProductList = (props) => {
       title: props.title,
       price: props.price,
       imageUrl: props.imageUrl,
-      quantity: 1,
+      qty: 1,
     });
   };
   const imageStyle = {
@@ -49,7 +49,7 @@ const ProductList = (props) => {
         <Card.Text style={{ color: "red", fontSize: "28px" }}>
           ${props.price}
         </Card.Text>
-        <Button variant="warning" onClick={handleAdd}>
+        <Button className="rounded-pill" variant="warning" onClick={handleAdd}>
           Add To Buy
         </Button>
       </Card.Body>

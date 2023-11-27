@@ -3,15 +3,18 @@ import Button from "react-bootstrap/Button";
 import cartContext from "../../Store/cart-context";
 import React, { useContext } from "react";
 
-function ButtonExample(props) {
+const ButtonExample = (props) => {
   const context = useContext(cartContext);
 
   const numberOfItems = context.products.length;
   return (
-    <Button variant="warning" onClick={props.onShow}>
-      🛒 Add To Buy <Badge bg="danger">{numberOfItems}</Badge>
+    <Button variant="warning" onClick={props.onShow} className="rounded-pill">
+      🛒 Add To Buy{" "}
+      <Badge className="rounded-pill" bg="danger">
+        {numberOfItems}
+      </Badge>
     </Button>
   );
-}
+};
 
 export default ButtonExample;

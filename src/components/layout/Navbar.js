@@ -7,16 +7,16 @@ import CartButton from "../UI/CartButton";
 
 const NavBar = (props) => {
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
-      <Container>
-        <Navbar.Brand href="#home">ShopKaro</Navbar.Brand>
+    <Navbar expand="lg" className="bg-body-tertiary" fixed="top">
+      <Container fluid>
         <img
           alt=""
           src={img}
           width="30"
           height="30"
           className="d-inline-block align-top"
-        />{" "}
+        />
+        <Navbar.Brand href="#home">ShopKaro</Navbar.Brand>{" "}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
