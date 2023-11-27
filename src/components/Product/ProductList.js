@@ -3,9 +3,36 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/esm/Button";
 
 const ProductList = (props) => {
+  const imageStyle = {
+    overflow: "hidden",
+  };
+
+  const zoomImageStyle = {
+    transition: "transform 0.3s ease-in-out",
+  };
+
+  const handleHover = (e) => {
+    e.target.style.transform = "scale(1.1)";
+  };
+
+  const handleHoverOut = (e) => {
+    e.target.style.transform = "scale(1)";
+  };
+
   return (
     <Card style={{ width: "18rem" }}>
-      <Card.Img variant="top" src={props.Url} />
+      <div
+        style={imageStyle}
+        onMouseEnter={handleHover}
+        onMouseLeave={handleHoverOut}
+      >
+        <Card.Img
+          variant="top"
+          src={props.Url}
+          style={{ ...zoomImageStyle }}
+          alt={props.title}
+        />
+      </div>
       <Card.Body>
         <Card.Title>{props.title}</Card.Title>
         <Card.Text style={{ color: "red", fontSize: "28px" }}>
