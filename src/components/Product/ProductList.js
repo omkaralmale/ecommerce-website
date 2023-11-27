@@ -8,8 +8,10 @@ const ProductList = (props) => {
       <Card.Img variant="top" src={props.Url} />
       <Card.Body>
         <Card.Title>{props.title}</Card.Title>
-        <Card.Text className>${props.price}</Card.Text>
-        <Button variant="danger">Add To Buy</Button>
+        <Card.Text style={{ color: "red", fontSize: "28px" }}>
+          ${props.price}
+        </Card.Text>
+        <Button variant="warning">Add To Buy</Button>
       </Card.Body>
     </Card>
   );

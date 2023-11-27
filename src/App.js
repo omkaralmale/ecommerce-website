@@ -2,6 +2,7 @@ import "./App.css";
 import React, { Fragment } from "react";
 import Navbar from "./components/layout/Navbar.js";
 import Product from "./components/Product/Product.js";
+import Footer from "./components/layout/Footer.js";
 
 const productsArr = [
   {
@@ -39,8 +40,15 @@ const productsArr = [
 function App() {
   return (
     <Fragment>
-      <Navbar />
-      <Product items={productsArr} />
+      <header>
+        <Navbar />
+      </header>
+      <main>
+        <Product items={productsArr} />
+      </main>
+      <footer>
+        <Footer />
+      </footer>
     </Fragment>
   );
 }
