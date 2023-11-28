@@ -60,7 +60,7 @@ const App = () => {
             />
             <div>
               <Button variant="danger" onClick={handleCancel}>
-                Cancel | Stop Retrying
+                Stop Retrying
               </Button>
             </div>
           </div>

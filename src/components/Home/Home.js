@@ -8,6 +8,7 @@ import img2 from "../../shoes.jpg";
 import Image from "react-bootstrap/Image";
 import LatestProducts from "./LatestProducts";
 import Spinner from "react-bootstrap/Spinner";
+import Button from "react-bootstrap/Button";
 
 const Home = () => {
   const [DATA, setDATA] = useState([]);
@@ -68,6 +69,9 @@ const Home = () => {
             variant="danger"
             style={{ animationDuration: "0.5s" }}
           />
+          <div>
+            <Button variant="danger"> Stop Retrying</Button>
+          </div>
         </div>
       )}
       <Footer />
