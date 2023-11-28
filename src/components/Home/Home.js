@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import NavBar from "../layout/NavBar";
 import Footer from "../layout/Footer";
 import Carousel from "react-bootstrap/Carousel";
@@ -32,33 +32,53 @@ const Home = () => {
     };
     collectData();
   }, []);
+
+  const carouselItems = useMemo(
+    () => [
+      {
+        imgSrc: img,
+        caption: {
+          label: "First slide label",
+          content: "Nulla vitae elit libero, a pharetra augue mollis interdum.",
+        },
+      },
+      {
+        imgSrc: img1,
+        caption: {
+          label: "Second slide label",
+          content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        },
+      },
+      {
+        imgSrc: img2,
+        caption: {
+          label: "Third slide label",
+          content:
+            "Praesent commodo cursus magna, vel scelerisque nisl consectetur.",
+        },
+      },
+    ],
+    []
+  );
+
   return (
     <>
       <NavBar />
       <Carousel>
-        <Carousel.Item>
-          <Image src={img} text="First slide" width="100%" height="50%" />
-          <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <Image src={img1} text="First slide" width="100%" height="50%" />
-          <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <Image src={img2} text="First slide" width="100%" height="50%" />
-          <Carousel.Caption>
-            <h3>Third slide label</h3>
-            <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-            </p>
-          </Carousel.Caption>
-        </Carousel.Item>
+        {carouselItems.map((item, index) => (
+          <Carousel.Item key={index}>
+            <Image
+              src={item.imgSrc}
+              text={item.caption.label}
+              width="100%"
+              height="50%"
+            />
+            <Carousel.Caption>
+              <h3>{item.caption.label}</h3>
+              <p>{item.caption.content}</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+        ))}
       </Carousel>
       {!visible && <LatestProducts data={DATA} />}
       {visible && (

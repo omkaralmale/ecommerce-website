@@ -54,10 +54,20 @@ const ProductList = (props) => {
       </div>
       <Card.Body style={{ padding: "8px" }}>
         <Card.Title
-          style={{ fontSize: "18px", height: "48px", overflow: "hidden" }}
+          style={{ fontSize: "18px", height: "20px", overflow: "hidden" }}
         >
           {props.title}
         </Card.Title>
+
+        <Card.Text
+          style={{
+            margin: "8px 0",
+            height: "50px",
+            overflow: "hidden",
+          }}
+        >
+          {props.description}
+        </Card.Text>
         <Card.Text
           style={{
             color: "red",

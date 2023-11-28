@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import NavBar from "./components/layout/NavBar.js";
 import Product from "./components/Product/Product.js";
 import Footer from "./components/layout/Footer.js";
@@ -14,34 +14,37 @@ const App = () => {
 
   //! FETCHING PRODUCT DATA API
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        setVisible(true);
-        const response = await fetch("https://fakestoreapi.com/products");
-        if (!response.ok) {
-          throw new Error("Failed to fetch products");
-        }
-        const data = await response.json();
-        setProductArray(data);
-        setVisible(false);
-      } catch (error) {
-        setErrorMessage("Something went wrong ....Retrying");
+  const fetchProducts = useCallback(async () => {
+    try {
+      setVisible(true);
+      const response = await fetch("https://api.escuelajs.co/api/v1/products");
+      if (!response.ok) {
+        throw new Error("Failed to fetch products");
       }
-    };
-    fetchProducts();
+      const data = await response.json();
+      setProductArray(data);
+      setVisible(false);
+    } catch (error) {
+      setErrorMessage("Something went wrong ....Retrying");
+    }
   }, []);
 
-  const handleCancel = () => {};
-  // !handle cart click
-  const handleCart = () => {
-    setCartVisibility(true);
-  };
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
 
-  //! handle hide cart
-  const handleHideCart = () => {
+  const handleCart = useCallback(() => {
+    setCartVisibility(true);
+  }, []);
+
+  const handleHideCart = useCallback(() => {
     setCartVisibility(false);
-  };
+  }, []);
+
+  const productComponent = useMemo(
+    () => <Product items={productsArray} />,
+    [productsArray]
+  );
 
   return (
     <ContextProvider>
@@ -59,13 +62,11 @@ const App = () => {
               style={{ animationDuration: "0.5s" }}
             />
             <div>
-              <Button variant="danger" onClick={handleCancel}>
-                Stop Retrying
-              </Button>
+              <Button variant="danger">Stop Retrying</Button>
             </div>
           </div>
         ) : (
-          <Product items={productsArray} />
+          productComponent
         )}
       </main>
       <footer>

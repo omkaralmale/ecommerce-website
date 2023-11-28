@@ -5,13 +5,15 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 const Product = (props) => {
+  console.log(props.items[1].description);
   const products = props.items.map((item, index) => (
     <Col key={item.id} sm={6} md={6} lg={3} className="mb-4 mr-3 mt-5">
       <ProductList
         title={item.title}
         price={item.price}
-        image={item.image}
+        image={item.category.image}
         id={item.id}
+        description={item.description}
       />
     </Col>
   ));
