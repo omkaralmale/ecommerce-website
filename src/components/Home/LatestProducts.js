@@ -10,7 +10,7 @@ const LatestProducts = (props) => {
   const productsItems = props.data.map((item, index) => (
     <Col key={item.id} sm={6} md={6} lg={3} className="mb-4 mr-3 mt-5">
       <LatestProductList
-        ii={item.id}
+        id={item.id}
         name={item.title}
         price={item.price}
         description={item.category.name}
