@@ -39,7 +39,7 @@ const ProductList = (props) => {
   };
 
   return (
-    <Card style={cardStyle}>
+    <Card style={cardStyle} className="mt-3">
       <div
         style={imageStyle}
         onMouseEnter={handleHover}

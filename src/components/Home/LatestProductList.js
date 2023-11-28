@@ -4,9 +4,10 @@ import Button from "react-bootstrap/Button";
 const LatestProductList = (props) => {
   return (
     <Card style={{ width: "18rem" }}>
-      <Card.Img
+      <img
         variant="top"
-        src="https://st4.depositphotos.com/12985848/23898/i/450/depositphotos_238987296-stock-photo-top-view-icon-word-new.jpg"
+        src={`https://source.unsplash.com/fashion/800x800/?img=1`}
+        alt="Not Found"
       />
       <Card.Body>
         <Card.Title>{props.name}</Card.Title>

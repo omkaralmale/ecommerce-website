@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import NavBar from "../layout/NavBar";
 import Footer from "../layout/Footer";
 import Carousel from "react-bootstrap/Carousel";
@@ -7,7 +7,30 @@ import img1 from "../../cloth4.jpg";
 import img2 from "../../shoes.jpg";
 import Image from "react-bootstrap/Image";
 import LatestProducts from "./LatestProducts";
+import Button from "react-bootstrap/Button";
+import Spinner from "react-bootstrap/Spinner";
+
 const Home = () => {
+  const [DATA, setDATA] = useState([]);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const collectData = async () => {
+      try {
+        setVisible(true);
+        const response = await fetch("https://api.storerestapi.com/products");
+        if (!response.ok) {
+          throw new Error("Failed to fetch products");
+        }
+        const data = await response.json();
+        setDATA(data.data);
+        setVisible(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    collectData();
+  }, []);
   return (
     <>
       <NavBar />
@@ -36,7 +59,16 @@ const Home = () => {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
-      <LatestProducts />
+      {!visible && <LatestProducts data={DATA} />}
+      {visible && (
+        <div style={{ textAlign: "center" }} className="mt-3">
+          <Spinner
+            animation="border"
+            variant="danger"
+            style={{ animationDuration: "0.5s" }}
+          />
+        </div>
+      )}
       <Footer />
     </>
   );
