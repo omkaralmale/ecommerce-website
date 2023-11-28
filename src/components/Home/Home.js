@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import NavBar from "../layout/NavBar";
 import Footer from "../layout/Footer";
 import Carousel from "react-bootstrap/Carousel";
@@ -15,21 +15,21 @@ const Home = () => {
   const [visible, setVisible] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
 
-  useEffect(() => {
-    const collectData = async () => {
-      try {
-        setVisible(true);
-        const response = await fetch("https://api.storerestapi.com/products");
-        if (!response.ok) {
-          throw new Error("Failed to fetch products");
-        }
-        const data = await response.json();
-        setDATA(data.data);
-        setVisible(false);
-      } catch (error) {
-        setErrorMessage("Something went wrong ....Retrying");
+  const collectData = useCallback(async () => {
+    try {
+      setVisible(true);
+      const response = await fetch("https://api.storerestapi.com/products");
+      if (!response.ok) {
+        throw new Error("Failed to fetch products");
       }
-    };
+      const data = await response.json();
+      setDATA(data.data);
+      setVisible(false);
+    } catch (error) {
+      setErrorMessage("Something went wrong ....Retrying");
+    }
+  }, [setDATA]);
+  useEffect(() => {
     collectData();
   }, []);
 

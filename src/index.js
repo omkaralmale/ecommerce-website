@@ -7,6 +7,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import About from "./components/About/About.js";
 import Home from "./components/Home/Home.js";
+import AddProduct from "./components/Product/addProduct/AddProduct.js";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+  },
+  {
+    path: "/AddProducts",
+    element: <AddProduct />,
   },
 ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));
