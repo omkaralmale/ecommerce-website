@@ -21,7 +21,7 @@ const LatestProductList = (props) => {
         <Card.Link>
           <Button variant="warning">Buy</Button>
         </Card.Link>
-        <Card.Link href="#">
+        <Card.Link>
           <Button variant="primary">View</Button>
         </Card.Link>
       </Card.Body>

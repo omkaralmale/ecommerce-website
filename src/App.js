@@ -5,13 +5,15 @@ import Footer from "./components/layout/Footer.js";
 import Cart from "./components/Cart/Cart.js";
 import ContextProvider from "./Store/ContextProvider.js";
 import Spinner from "react-bootstrap/Spinner";
-
+import Button from "react-bootstrap/Button";
 const App = () => {
   const [cartShow, setCartVisibility] = useState(false);
   const [productsArray, setProductArray] = useState([]);
   const [visible, setVisible] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   //! FETCHING PRODUCT DATA API
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -24,13 +26,13 @@ const App = () => {
         setProductArray(data);
         setVisible(false);
       } catch (error) {
-        console.error(error);
+        setErrorMessage("Something went wrong ....Retrying");
       }
     };
-
     fetchProducts();
   }, []);
 
+  const handleCancel = () => {};
   // !handle cart click
   const handleCart = () => {
     setCartVisibility(true);
@@ -50,14 +52,20 @@ const App = () => {
       <main>
         {visible ? (
           <div style={{ textAlign: "center", marginTop: "100px" }}>
+            <p>{errorMessage}</p>
             <Spinner
               animation="border"
               variant="danger"
               style={{ animationDuration: "0.5s" }}
             />
+            <div>
+              <Button variant="danger" onClick={handleCancel}>
+                Cancel | Stop Retrying
+              </Button>
+            </div>
           </div>
         ) : (
-          <Product items={productsArray} /> // Show products if visible state is false
+          <Product items={productsArray} />
         )}
       </main>
       <footer>

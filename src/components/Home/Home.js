@@ -7,12 +7,12 @@ import img1 from "../../cloth4.jpg";
 import img2 from "../../shoes.jpg";
 import Image from "react-bootstrap/Image";
 import LatestProducts from "./LatestProducts";
-import Button from "react-bootstrap/Button";
 import Spinner from "react-bootstrap/Spinner";
 
 const Home = () => {
   const [DATA, setDATA] = useState([]);
   const [visible, setVisible] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
     const collectData = async () => {
@@ -26,7 +26,7 @@ const Home = () => {
         setDATA(data.data);
         setVisible(false);
       } catch (error) {
-        console.log(error);
+        setErrorMessage("Something went wrong ....Retrying");
       }
     };
     collectData();
@@ -62,6 +62,7 @@ const Home = () => {
       {!visible && <LatestProducts data={DATA} />}
       {visible && (
         <div style={{ textAlign: "center" }} className="mt-3">
+          <p>{errorMessage}</p>
           <Spinner
             animation="border"
             variant="danger"
