@@ -6,6 +6,7 @@ import "../node_modules/react-bootstrap/dist/react-bootstrap.js";
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import About from "./components/About/About.js";
+import Home from "./components/Home/Home.js";
 
 const router = createBrowserRouter([
   {
@@ -13,12 +14,16 @@ const router = createBrowserRouter([
     element: <About />,
   },
   {
-    path: "/",
+    path: "/Store",
     element: <App />,
   },
   {
     path: "/Home",
-    element: <App />,
+    element: <Home />,
+  },
+  {
+    path: "/",
+    element: <Home />,
   },
 ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));

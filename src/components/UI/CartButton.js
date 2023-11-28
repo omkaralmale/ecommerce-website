@@ -9,7 +9,7 @@ const ButtonExample = (props) => {
   const numberOfItems = context.products.length;
   return (
     <Button variant="warning" onClick={props.onShow} className="rounded-pill">
-      🛒 Add To Buy{" "}
+      🛒 Cart{" "}
       <Badge className="rounded-pill" bg="danger">
         {numberOfItems}
       </Badge>

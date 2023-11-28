@@ -7,7 +7,13 @@ const Footer = () => {
       <Container fluid>
         <Card style={{ border: "none" }}>
           <Card.Body style={{ textAlign: "center" }}>
-            <Card.Title style={{ fontSize: "24px", marginBottom: "20px" }}>
+            <Card.Title
+              style={{
+                fontSize: "24px",
+                marginBottom: "20px",
+                marginTop: "20px",
+              }}
+            >
               Connect with us
             </Card.Title>
             <Card.Text style={{ fontSize: "18px", marginBottom: "30px" }}>
