@@ -6,6 +6,7 @@ import Cart from "./components/Cart/Cart.js";
 import ContextProvider from "./Store/ContextProvider.js";
 import Spinner from "react-bootstrap/Spinner";
 import Button from "react-bootstrap/Button";
+
 const App = () => {
   const [cartShow, setCartVisibility] = useState(false);
   const [productsArray, setProductArray] = useState([]);
