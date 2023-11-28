@@ -6,15 +6,15 @@ import Col from "react-bootstrap/Col";
 
 const Product = (props) => {
   const products = props.items.map((item, index) => (
-    <Col key={item.imageUrl} sm={6} md={6} lg={3} className="mb-4 mr-3 mt-5">
+    <Col key={item.id} sm={6} md={6} lg={3} className="mb-4 mr-3 mt-5">
       <ProductList
         title={item.title}
         price={item.price}
-        imageUrl={item.imageUrl}
+        image={item.image}
+        id={item.id}
       />
     </Col>
   ));
-
   const rows = [];
   for (let i = 0; i < products.length; i += 4) {
     rows.push(

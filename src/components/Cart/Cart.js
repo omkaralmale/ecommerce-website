@@ -16,10 +16,10 @@ const Cart = (props) => {
         <Modal.Body>
           <ListGroup variant="flush">
             {context.products.map((item, index) => (
-              <ListGroup.Item key={index}>
+              <ListGroup.Item key={item.id}>
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <Image
-                    src={item.imageUrl}
+                    src={item.image}
                     alt={item.title}
                     width="50"
                     height="50"
@@ -37,7 +37,8 @@ const Cart = (props) => {
                       {item.title}
                     </p>
                     <p style={{ margin: "0" }}>
-                      Price: ${item.price} | Qty: {item.qty}
+                      Price: <span style={{ color: "red" }}>${item.price}</span>{" "}
+                      | Qty: <span style={{ color: "red" }}>{item.qty}</span>{" "}
                     </p>
                   </div>
                   <div
@@ -46,7 +47,7 @@ const Cart = (props) => {
                       marginLeft: "10em",
                     }}
                   >
-                    <Button onClick={handleRemove} value={item.imageUrl}>
+                    <Button onClick={handleRemove} value={item.id}>
                       Remove
                     </Button>
                   </div>
@@ -62,9 +63,9 @@ const Cart = (props) => {
             }}
           >
             Total Cost:{" "}
-            <strong style={{ color: "red", fontSize: "24px" }}>
-              ${context.total}
-            </strong>
+            <p style={{ color: "red", fontSize: "24px" }}>
+              ${context.total.toFixed(2)}
+            </p>
           </div>
         </Modal.Body>
         <Modal.Footer>

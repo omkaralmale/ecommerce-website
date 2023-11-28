@@ -38,10 +38,10 @@ const reducer = (state, action) => {
 
   if (action.type === "REMOVE") {
     let updatedProducts = state.products.map((item) => {
-      if (item.id === action.id && item.qty > 0) {
+      if (item.id === parseInt(action.id) && item.qty > 0) {
         return {
           ...item,
-          qty: item.qty - 1,
+          qty: +item.qty - 1,
         };
       }
       return item;

@@ -35,23 +35,6 @@ const fashionData = [
     description:
       "Durable leather boots perfect for various outdoor activities.",
   },
-  {
-    id: 5,
-    category: "Accessories",
-    name: "Sunglasses",
-    price: 19.99,
-    description:
-      "UV-protection sunglasses with a trendy design for sunny days.",
-  },
-  {
-    id: 6,
-    category: "Accessories",
-    name: "Watch",
-    price: 99.99,
-    description:
-      "Elegant wristwatch with a stainless steel strap and water resistance.",
-  },
-  // Add more fashion items as needed
 ];
 
 const LatestProducts = () => {
@@ -66,10 +49,10 @@ const LatestProducts = () => {
     </Col>
   ));
   const rows = [];
-  for (let i = 0; i < productsItems.length; i += 3) {
+  for (let i = 0; i < productsItems.length; i += 4) {
     rows.push(
       <Row key={i} className="justify-content-center">
-        {productsItems.slice(i, i + 3)}
+        {productsItems.slice(i, i + 4)}
       </Row>
     );
   }
