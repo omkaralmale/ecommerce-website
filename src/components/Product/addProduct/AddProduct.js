@@ -13,7 +13,7 @@ const AddProduct = () => {
   const [showForm, setShowForm] = useState(false);
   const Name = useRef("");
   const Price = useRef("");
-  const description = useRef("");
+  const desc = useRef("");
   const ImageUrl = useRef("");
   const Image_File = useRef("");
 
@@ -22,7 +22,7 @@ const AddProduct = () => {
     const obj = {
       Name: Name.current.value,
       Price: Price.current.value,
-      description: description.current.value,
+      desc: desc.current.value,
       Image_File: Image_File.current.value,
       image_url: ImageUrl.current.value,
     };
@@ -41,7 +41,7 @@ const AddProduct = () => {
       await response.json();
       Name.current.value = "";
       Price.current.value = "";
-      description.current.value = "";
+      desc.current.value = "";
       Image_File.current.value = "";
       ImageUrl.current.value = "";
       alert("Product Added Check on Home Page");
@@ -102,7 +102,7 @@ const AddProduct = () => {
                 <Form.Group as={Col}>
                   <Form.Label>Product Description</Form.Label>
                   <Form.Control
-                    ref={description}
+                    ref={desc}
                     as="textarea"
                     rows={3}
                     placeholder="Enter Product Description"

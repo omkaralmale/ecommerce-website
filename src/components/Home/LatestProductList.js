@@ -26,15 +26,17 @@ const LatestProductList = (props) => {
       <img variant="top" src={props.image_url} alt="Not Found" />
       <Card.Body>
         <Card.Title>{props.name}</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">
-          {props.category}
-        </Card.Subtitle>
-        <Card.Text>{props.description}</Card.Text>
+        <Card.Text>
+          {props.desc ? props.desc : "Description not Available"}
+        </Card.Text>
         <Card.Text className="text-danger" style={{ fontSize: "22px" }}>
           ${props.price}
         </Card.Text>
         <Card.Link>
           <Button variant="warning">Buy</Button>
+        </Card.Link>
+        <Card.Link>
+          <Button variant="success">View</Button>
         </Card.Link>
         <Card.Link>
           <Button variant="primary" onClick={handleDelete}>

@@ -18,7 +18,7 @@ const LatestProducts = (props) => {
         id={item.id}
         name={item.name}
         price={item.price}
-        description={item.description}
+        desc={item.desc}
         image_url={item.image_url}
       />
     </Col>
