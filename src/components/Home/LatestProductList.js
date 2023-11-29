@@ -5,21 +5,22 @@ const LatestProductList = (props) => {
   const handleDelete = async () => {
     try {
       const response = await fetch(
-        "https://ecommerece-website-1a-default-rtdb.firebaseio.com/products.json",
+        `https://ecommerece-website-1a-default-rtdb.firebaseio.com/products/${props.id}.json`,
         {
           method: "DELETE",
-          body: props.id,
-          headers: {
-            "Content-Type": "application/json",
-          },
         }
       );
-      const data = await response.json();
-      console.log(data);
+
+      if (response.ok) {
+        console.log("Product deleted successfully");
+      } else {
+        console.log("Failed to delete product");
+      }
     } catch (error) {
-      console.log(error);
+      console.log("Error:", error);
     }
   };
+
   return (
     <Card style={{ width: "18rem" }}>
       <img variant="top" src={props.image_url} alt="Not Found" />

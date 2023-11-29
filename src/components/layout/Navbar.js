@@ -23,13 +23,15 @@ const NavBar = (props) => {
             <Nav.Link href="/Home">Home</Nav.Link>
             <Nav.Link href="/Store">Store</Nav.Link>
             <Nav.Link href="/About">About</Nav.Link>
+            <Nav.Link href="/ContactUs">Contact Us</Nav.Link>
+            <Nav.Link href=""> Hidden</Nav.Link>
             <NavDropdown title="Services" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Mens</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">Women</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Kids</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="/AddProducts">
-                Add Product From
+                Add Product
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>

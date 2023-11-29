@@ -82,7 +82,6 @@ const Home = () => {
   const handleHideCart = () => {
     setCartVisibility(false);
   };
-
   console.log(DATA);
   return (
     <>

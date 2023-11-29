@@ -7,11 +7,13 @@ import Cart from "../Cart/Cart";
 
 const About = () => {
   const [cartShow, setCartVisibility] = useState(false);
+
   const imageStyle = {
     width: "100%",
     height: "auto",
     objectFit: "cover",
   };
+
   const handleCart = () => {
     setCartVisibility(true);
   };

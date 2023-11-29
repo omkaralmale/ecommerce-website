@@ -5,20 +5,15 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import NavBar from "../../layout/NavBar";
 import { useRef } from "react";
-import ListGroup from "react-bootstrap/ListGroup";
-import { Image } from "react-bootstrap";
 import Footer from "../../layout/Footer";
 import Cart from "../../Cart/Cart";
-
-let ProductList = [];
 
 const AddProduct = () => {
   const [cartShow, setCartVisibility] = useState(false);
   const [showForm, setShowForm] = useState(false);
-  const [showProduct, setProduct] = useState(ProductList);
   const Name = useRef("");
   const Price = useRef("");
-  const Description = useRef("");
+  const description = useRef("");
   const ImageUrl = useRef("");
   const Image_File = useRef("");
 
@@ -27,7 +22,7 @@ const AddProduct = () => {
     const obj = {
       Name: Name.current.value,
       Price: Price.current.value,
-      Description: Description.current.value,
+      description: description.current.value,
       Image_File: Image_File.current.value,
       image_url: ImageUrl.current.value,
     };
@@ -43,8 +38,13 @@ const AddProduct = () => {
           },
         }
       );
-      const data = await response.json();
-      console.log(data);
+      await response.json();
+      Name.current.value = "";
+      Price.current.value = "";
+      description.current.value = "";
+      Image_File.current.value = "";
+      ImageUrl.current.value = "";
+      alert("Product Added Check on Home Page");
     } catch (error) {
       console.log(error);
     }
@@ -102,7 +102,7 @@ const AddProduct = () => {
                 <Form.Group as={Col}>
                   <Form.Label>Product Description</Form.Label>
                   <Form.Control
-                    ref={Description}
+                    ref={description}
                     as="textarea"
                     rows={3}
                     placeholder="Enter Product Description"
@@ -138,72 +138,6 @@ const AddProduct = () => {
               </div>
             </Form>
           )}
-          <div>
-            <ListGroup
-              variant="flush"
-              className="mt-5"
-              style={{ border: "2px solid black" }}
-            >
-              {showProduct.map((item) => (
-                <ListGroup.Item key={item.Name}>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                    }}
-                  >
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      <Image
-                        src={item.ImageUrl}
-                        alt={item.Name}
-                        width="50"
-                        height="50"
-                        rounded
-                        style={{ marginRight: "10px" }}
-                      />
-                      <div>
-                        <p
-                          style={{
-                            margin: "0",
-                            fontSize: "20px",
-                            fontWeight: "600",
-                          }}
-                        >
-                          {item.Name}
-                        </p>
-                        <p style={{ margin: "0" }}>
-                          Price:{" "}
-                          <span style={{ color: "red" }}>${item.Price}</span>
-                        </p>
-                      </div>
-                    </div>
-
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "flex-end",
-                      }}
-                    >
-                      {item.Description}
-                    </div>
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "flex-end",
-                      }}
-                    >
-                      <Button variant="danger">Post</Button>
-                      {"__"}
-                      <Button value={item.id}>Remove</Button>
-                    </div>
-                  </div>
-                </ListGroup.Item>
-              ))}
-            </ListGroup>
-          </div>
         </div>
       </div>
       <Footer />
