@@ -9,8 +9,9 @@ import Image from "react-bootstrap/Image";
 import LatestProducts from "./LatestProducts";
 import Spinner from "react-bootstrap/Spinner";
 import Button from "react-bootstrap/Button";
-
+import Cart from "../Cart/Cart";
 const Home = () => {
+  const [cartShow, setCartVisibility] = useState(false);
   const [DATA, setDATA] = useState([]);
   const [visible, setVisible] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -18,20 +19,33 @@ const Home = () => {
   const collectData = useCallback(async () => {
     try {
       setVisible(true);
-      const response = await fetch("https://api.storerestapi.com/products");
+      const response = await fetch(
+        "https://ecommerece-website-1a-default-rtdb.firebaseio.com/products.json"
+      );
       if (!response.ok) {
         throw new Error("Failed to fetch products");
       }
       const data = await response.json();
-      setDATA(data.data);
+
+      const loadedProducts = [];
+      for (const key in data) {
+        loadedProducts.push({
+          id: key,
+          name: data[key].Name,
+          price: data[key].Price,
+          description: data[key].description,
+          image_url: data[key].image_url,
+        });
+      }
+      setDATA(loadedProducts);
       setVisible(false);
     } catch (error) {
       setErrorMessage("Something went wrong ....Retrying");
     }
-  }, [setDATA]);
+  }, []);
   useEffect(() => {
     collectData();
-  }, []);
+  }, [collectData]);
 
   const carouselItems = useMemo(
     () => [
@@ -61,9 +75,19 @@ const Home = () => {
     []
   );
 
+  const handleCart = () => {
+    setCartVisibility(true);
+  };
+
+  const handleHideCart = () => {
+    setCartVisibility(false);
+  };
+
+  console.log(DATA);
   return (
     <>
-      <NavBar />
+      <NavBar onShow={handleCart} />
+      {cartShow && <Cart handelHide={handleHideCart} />}
       <Carousel>
         {carouselItems.map((item, index) => (
           <Carousel.Item key={index}>
@@ -80,6 +104,9 @@ const Home = () => {
           </Carousel.Item>
         ))}
       </Carousel>
+      <div className="m-2 d-flex justify-content-center text-danger text-decoration-underline font-monospace">
+        <h3>Newly Added Products</h3>
+      </div>
       {!visible && <LatestProducts data={DATA} />}
       {visible && (
         <div style={{ textAlign: "center" }} className="mt-3">

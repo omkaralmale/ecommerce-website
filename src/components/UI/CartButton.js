@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import cartContext from "../../Store/cart-context";
 import React, { useContext } from "react";
 
-const ButtonExample = (props) => {
+const CartButton = (props) => {
   const context = useContext(cartContext);
 
   const numberOfItems = context.products.length;
@@ -17,4 +17,4 @@ const ButtonExample = (props) => {
   );
 };
 
-export default ButtonExample;
+export default CartButton;

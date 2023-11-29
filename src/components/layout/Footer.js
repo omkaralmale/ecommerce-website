@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer style={{ backgroundColor: "#f8f9fa", paddingTop: "30px" }}>
       <Container fluid>
-        <Card style={{ border: "none" }}>
+        <Card style={{ border: "2px solid grey", width: "100%" }}>
           <Card.Body style={{ textAlign: "center" }}>
             <Card.Title
               style={{

@@ -6,15 +6,20 @@ import Col from "react-bootstrap/Col";
 import LatestProductList from "./LatestProductList";
 
 const LatestProducts = (props) => {
-  console.log(props.data);
-  const productsItems = props.data.map((item, index) => (
-    <Col key={item.id} sm={6} md={6} lg={3} className="mb-4 mr-3 mt-5">
+  const productsItems = props.data.map((item) => (
+    <Col
+      key={item.id + " " + item.title}
+      sm={6}
+      md={6}
+      lg={3}
+      className="mb-4 mr-3 mt-5"
+    >
       <LatestProductList
         id={item.id}
-        name={item.title}
+        name={item.name}
         price={item.price}
-        description={item.category.name}
-        category={item.createdBy.name}
+        description={item.description}
+        image_url={item.image_url}
       />
     </Col>
   ));

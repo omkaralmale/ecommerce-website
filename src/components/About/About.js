@@ -1,19 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../layout/NavBar";
 import { Image, Container, Row, Col } from "react-bootstrap";
 import bg from "../../pexels-shattha-pilabut-135620.jpg";
 import Footer from "../layout/Footer";
+import Cart from "../Cart/Cart";
 
 const About = () => {
+  const [cartShow, setCartVisibility] = useState(false);
   const imageStyle = {
     width: "100%",
     height: "auto",
     objectFit: "cover",
   };
+  const handleCart = () => {
+    setCartVisibility(true);
+  };
+
+  const handleHideCart = () => {
+    setCartVisibility(false);
+  };
 
   return (
     <>
-      <NavBar />
+      <NavBar onShow={handleCart} />
+      {cartShow && <Cart handelHide={handleHideCart} />}
       <Container fluid>
         <Row>
           <Col>
