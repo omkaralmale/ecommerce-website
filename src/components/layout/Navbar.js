@@ -44,6 +44,11 @@ const NavBar = (props) => {
             <Nav.Link>
               <NavLink to="/ContactUs">Contact Us</NavLink>
             </Nav.Link>
+            <Nav.Link>
+              <NavLink to="/Login">
+                <span onClick={handleLogout}>{state ? "LogOut" : "LogIn"}</span>
+              </NavLink>
+            </Nav.Link>
 
             <NavDropdown title="Services" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.3">DUMMY</NavDropdown.Item>
@@ -59,7 +64,6 @@ const NavBar = (props) => {
             </NavDropdown>
           </Nav>
           <CartButton onShow={props.onShow} />
-          <Button onClick={handleLogout}>{state ? "LogOut" : "LogIn"}</Button>
         </Navbar.Collapse>
       </Container>
     </Navbar>
