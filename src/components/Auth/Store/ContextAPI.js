@@ -8,8 +8,9 @@ export const AuthContext = createContext({
 });
 
 const AuthContextProvider = (props) => {
+  const InitialToken = localStorage.getItem("key");
   const [authState, setAuthState] = useState({
-    token: "",
+    token: InitialToken,
     isLogin: false,
   });
 
@@ -18,6 +19,7 @@ const AuthContextProvider = (props) => {
       token: token,
       isLogin: true,
     });
+    localStorage.setItem("key", token);
   };
 
   const logoutHandler = () => {
@@ -25,6 +27,7 @@ const AuthContextProvider = (props) => {
       token: "",
       isLogin: false,
     });
+    localStorage.removeItem("key");
   };
 
   return (

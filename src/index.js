@@ -15,6 +15,7 @@ import AuthContextProvider from "./components/Auth/Store/ContextAPI.js";
 import ChangePassword from "./components/Auth/ChangePassword.js";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
   <AuthContextProvider>
     <BrowserRouter>
