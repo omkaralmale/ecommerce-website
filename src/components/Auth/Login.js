@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const [action, setAction] = useState("LogIn");
   const [password, setPassword] = useState("");
 
   const handleEmailChange = (event) => {
@@ -14,26 +15,31 @@ const Login = () => {
     setPassword(event.target.value);
   };
 
+  const handleAction = () => {
+    setAction(action === "LogIn" ? "SignUp" : "LogIn");
+  };
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Email:", email);
-    console.log("Password:", password);
     setLoading(true);
-    await fetch(
-      "https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=AIzaSyBbyTlWC4cztAM-keqMmenrXxvAA5lUzBk",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          email: email,
-          password: password,
-          returnSecureToken: true,
-        }),
-        "Content-type": "application/json",
-      }
-    ).then((res) => {
+    if (action === "LogIn") {
+      URL =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBbyTlWC4cztAM-keqMmenrXxvAA5lUzBk";
+    } else {
+      URL =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBbyTlWC4cztAM-keqMmenrXxvAA5lUzBk";
+    }
+    await fetch(`${URL}`, {
+      method: "POST",
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        returnSecureToken: true,
+      }),
+      "Content-type": "application/json",
+    }).then((res) => {
       if (res.ok) {
+        console.log("Done");
         setLoading(false);
-        console.log(res);
       } else {
         return res.json().then((data) => {
           setLoading(false);
@@ -65,7 +71,8 @@ const Login = () => {
         <Card style={cardStyle}>
           <Card.Body>
             <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
-              Registration !
+              {action}
+              <span> Page</span>
             </h2>
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="formBasicEmail">
@@ -105,12 +112,23 @@ const Login = () => {
                 )}
               </div>
               <Button variant="primary" type="submit" style={buttonStyle}>
-                Login
+                {action}
               </Button>
             </Form>
             <div className="m-2 d-flex justify-content-sm-around">
-              <Link to="#">Register</Link>
-              <Link to="#">Forgot Password</Link>
+              <Link
+                to="#"
+                onClick={handleAction}
+                style={{ color: "blue", textDecoration: "underline" }}
+              >
+                {action === "LogIn" ? "Have Account" : "Back to Login"}
+              </Link>
+              <Link
+                to="#"
+                style={{ color: "blue", textDecoration: "underline" }}
+              >
+                Forgot Password
+              </Link>
             </div>
           </Card.Body>
         </Card>
