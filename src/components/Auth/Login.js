@@ -49,22 +49,23 @@ const Login = () => {
     })
       .then((res) => {
         if (res.ok) {
-          console.log("Done");
-          setLoading(false);
           return res.json();
         } else {
           return res.json().then((data) => {
-            setLoading(false);
             const errorMessage = data.error.message;
             throw new Error(errorMessage);
           });
         }
       })
       .then((data) => {
+        console.log(data.idToken);
         context.login(data.idToken);
+        setLoading(false);
+        console.log("Done");
         history.replace("/Home");
       })
       .catch((error) => {
+        setLoading(false);
         alert(error);
       });
     setEmail("");

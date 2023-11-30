@@ -5,7 +5,6 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import img from "../../icons8-shop-96.png";
 import CartButton from "../UI/CartButton";
 import { NavLink, useHistory } from "react-router-dom";
-import Button from "react-bootstrap/Button";
 import { AuthContext } from "../Auth/Store/ContextAPI";
 import React, { useContext, useState } from "react";
 
@@ -15,7 +14,7 @@ const NavBar = (props) => {
   const [state, setSate] = useState(context.isLogin);
 
   const handleLogout = () => {
-    setSate(false);
+    setSate(true);
     history.replace("/LogIn");
   };
   return (

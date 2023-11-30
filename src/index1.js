@@ -24,7 +24,8 @@ const Index1 = () => {
         {<Route path="/ChangePassword" component={ChangePassword} exact />}
         {<Route path="/Store" component={App} exact />}
         {<Route path="/Home" component={Home} exact />}
-        {<Route path="/LogIn" component={Login} exact />}
+        {<Route path="/" component={Login} exact />}
+        {<Route path="/Login" component={Login} exact />}
         {<Route path="/ChangePassword" component={ChangePassword} exact />}
         {<Route path="/AddProducts" component={AddProduct} exact />}
         {<Route path="/ContactUs" component={ContactUs} exact />}
