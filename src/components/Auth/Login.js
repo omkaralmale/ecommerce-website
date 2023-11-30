@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "./Store/ContextAPI";
 import NavBar from "../layout/NavBar";
 import Footer from "../layout/Footer";
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
+  const history = useHistory();
   const context = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
@@ -48,7 +50,6 @@ const Login = () => {
       .then((res) => {
         if (res.ok) {
           console.log("Done");
-
           setLoading(false);
           return res.json();
         } else {
@@ -61,7 +62,7 @@ const Login = () => {
       })
       .then((data) => {
         context.login(data.idToken);
-        localStorage.setItem("token", data.idToken);
+        history.replace("/Home");
       })
       .catch((error) => {
         alert(error);

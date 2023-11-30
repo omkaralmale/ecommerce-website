@@ -4,8 +4,20 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import img from "../../icons8-shop-96.png";
 import CartButton from "../UI/CartButton";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import { AuthContext } from "../Auth/Store/ContextAPI";
+import React, { useContext, useState } from "react";
+
 const NavBar = (props) => {
+  const history = useHistory();
+  const context = useContext(AuthContext);
+  const [state, setSate] = useState(context.isLogin);
+
+  const handleLogout = () => {
+    setSate(false);
+    history.replace("/LogIn");
+  };
   return (
     <Navbar expand="lg" className="bg-body-tertiary" fixed="top">
       <Container fluid>
@@ -34,13 +46,11 @@ const NavBar = (props) => {
             </Nav.Link>
 
             <NavDropdown title="Services" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Mens</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Women</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Kids</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">DUMMY</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item>
                 <Nav.Link>
-                  <NavLink to="/Addproducts">Add Product</NavLink>
+                  <NavLink to="/AddProducts">Add Product</NavLink>
                 </Nav.Link>
                 <Nav.Link>
                   <NavLink to="/ChangePassword">ChangePassword</NavLink>
@@ -49,6 +59,7 @@ const NavBar = (props) => {
             </NavDropdown>
           </Nav>
           <CartButton onShow={props.onShow} />
+          <Button onClick={handleLogout}>{state ? "LogOut" : "LogIn"}</Button>
         </Navbar.Collapse>
       </Container>
     </Navbar>

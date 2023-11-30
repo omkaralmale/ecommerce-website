@@ -3,8 +3,10 @@ import { Form, Button, Container, Card, Spinner } from "react-bootstrap";
 import { AuthContext } from "./Store/ContextAPI";
 import NavBar from "../layout/NavBar";
 import Footer from "../layout/Footer";
+import { useHistory } from "react-router-dom";
 
 const ChangePassword = () => {
+  const history = useHistory();
   const password = useRef("");
   const context = useContext(AuthContext);
   const cardStyle = {
@@ -33,7 +35,9 @@ const ChangePassword = () => {
         }),
       }
     )
-      .then((res) => {})
+      .then((res) => {
+        history.replace("/Home");
+      })
       .catch((error) => {});
   };
   return (
