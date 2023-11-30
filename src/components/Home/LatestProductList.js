@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 const LatestProductList = (props) => {
   const handleDelete = async () => {
     try {
@@ -33,10 +34,12 @@ const LatestProductList = (props) => {
           ${props.price}
         </Card.Text>
         <Card.Link>
-          <Button variant="warning">Buy</Button>
+          <Link to={`/ProductPage/picsReview`} variant="success">
+            VIEW
+          </Link>
         </Card.Link>
         <Card.Link>
-          <Button variant="success">View</Button>
+          <Button variant="warning">Buy</Button>
         </Card.Link>
         <Card.Link>
           <Button variant="primary" onClick={handleDelete}>

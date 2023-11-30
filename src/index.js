@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { Route, BrowserRouter, Switch } from "react-router-dom";
+import { Route, BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import "../node_modules/react-bootstrap/dist/react-bootstrap.js";
@@ -9,27 +9,18 @@ import About from "./components/About/About.js";
 import Home from "./components/Home/Home.js";
 import AddProduct from "./components/Product/addProduct/AddProduct.js";
 import ContactUs from "./components/ContactUs/ContactUs.js";
+import ProductPage from "./components/Pages/ProductPage.js";
+import Login from "./components/Auth/Login.js";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-    <Route path="/About">
-      <About />
-    </Route>
-    <Route path="/Store">
-      <App />
-    </Route>
-    <Route path="/Home">
-      <Home />
-    </Route>
-    <Route path="/AddProducts">
-      <AddProduct />
-    </Route>
-    <Route path="/ContactUs">
-      <ContactUs />
-    </Route>
-    <Route path="/Home/:productId">
-      <Home />
-    </Route>
+    <Route path="/About" component={About} exact />
+    <Route path="/Store" component={App} exact />
+    <Route path="/Home" component={Home} exact />
+    <Route path="/LogIn" component={Login} exact />
+    <Route path="/AddProducts" component={AddProduct} exact />
+    <Route path="/ContactUs" component={ContactUs} exact />
+    <Route path="/ProductPage/:id" component={ProductPage} />
   </BrowserRouter>
 );

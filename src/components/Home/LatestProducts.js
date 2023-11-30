@@ -7,13 +7,7 @@ import LatestProductList from "./LatestProductList";
 
 const LatestProducts = (props) => {
   const productsItems = props.data.map((item) => (
-    <Col
-      key={item.id + " " + item.title}
-      sm={6}
-      md={6}
-      lg={3}
-      className="mb-4 mr-3 mt-5"
-    >
+    <Col key={item.id} sm={6} md={6} lg={3} className="mb-4 mr-3 mt-5">
       <LatestProductList
         id={item.id}
         name={item.name}

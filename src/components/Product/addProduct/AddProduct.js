@@ -44,7 +44,6 @@ const AddProduct = () => {
       desc.current.value = "";
       Image_File.current.value = "";
       ImageUrl.current.value = "";
-      alert("Product Added Check on Home Page");
     } catch (error) {
       console.log(error);
     }
