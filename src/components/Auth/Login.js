@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Form, Button, Container, Card, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { AuthContext } from "./Store/ContextAPI";
+import AuthContextProvider, { AuthContext } from "./Store/ContextAPI";
 import NavBar from "../layout/NavBar";
 import Footer from "../layout/Footer";
 import { useHistory } from "react-router-dom";
@@ -59,6 +59,7 @@ const Login = () => {
       })
       .then((data) => {
         console.log(data.idToken);
+        console.log(context);
         context.login(data.idToken);
         setLoading(false);
         console.log("Done");
@@ -86,7 +87,7 @@ const Login = () => {
   };
 
   return (
-    <>
+    <AuthContextProvider>
       {context.isLogin && <NavBar />}
 
       <Container>
@@ -159,7 +160,7 @@ const Login = () => {
 
       {/* {context.isLogin && <ChangePassword />} */}
       {context.isLogin && <Footer />}
-    </>
+    </AuthContextProvider>
   );
 };
 

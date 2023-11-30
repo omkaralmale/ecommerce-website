@@ -13,13 +13,13 @@ const AuthContextProvider = (props) => {
     token: InitialToken,
     isLogin: false,
   });
-
-  const loginHandler = (val) => {
+  console.log(authState);
+  const loginHandler = (token) => {
     setAuthState({
-      token: val,
+      token: token,
       isLogin: true,
     });
-    localStorage.setItem("key", val);
+    console.log(token);
   };
 
   const logoutHandler = () => {
@@ -27,7 +27,6 @@ const AuthContextProvider = (props) => {
       token: "",
       isLogin: false,
     });
-    localStorage.removeItem("key");
   };
 
   return (

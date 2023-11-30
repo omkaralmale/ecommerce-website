@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-
+import React, { useContext, useEffect } from "react";
 import { Route, BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App.js";
@@ -11,28 +10,47 @@ import AddProduct from "./components/Product/addProduct/AddProduct.js";
 import ContactUs from "./components/ContactUs/ContactUs.js";
 import ProductPage from "./components/Pages/ProductPage.js";
 import Login from "./components/Auth/Login.js";
-
+import AuthContextProvider, {
+  AuthContext,
+} from "./components/Auth/Store/ContextAPI.js";
 import ChangePassword from "./components/Auth/ChangePassword.js";
 
-import { AuthContext } from "./components/Auth/Store/ContextAPI.js";
 const Index1 = () => {
-  const context = useContext(AuthContext);
-  console.log(context);
   return (
-    <>
-      <BrowserRouter>
-        {<Route path="/ChangePassword" component={ChangePassword} exact />}
-        {<Route path="/Store" component={App} exact />}
-        {<Route path="/Home" component={Home} exact />}
-        {<Route path="/" component={Login} exact />}
-        {<Route path="/Login" component={Login} exact />}
-        {<Route path="/ChangePassword" component={ChangePassword} exact />}
-        {<Route path="/AddProducts" component={AddProduct} exact />}
-        {<Route path="/ContactUs" component={ContactUs} exact />}
-        {<Route path="/ProductPage/:id" component={ProductPage} />}
-        {<Route path="/About" component={About} />}
-      </BrowserRouter>
-    </>
+    <AuthContextProvider>
+      <Content />
+    </AuthContextProvider>
   );
 };
+
+const Content = () => {
+  const context = useContext(AuthContext);
+
+  useEffect(() => {
+    console.log("Context updated:", context);
+  }, [context]);
+
+  return (
+    <BrowserRouter>
+      {context.isLogin && <Route path="/Store" component={App} exact />}
+      {context.isLogin && <Route path="/Home" component={Home} exact />}
+      {!context.isLogin && <Route path="/" component={Login} exact />}
+      {!context.isLogin && <Route path="/Login" component={Login} exact />}
+      {context.isLogin && (
+        <Route path="/ChangePassword" component={ChangePassword} exact />
+      )}
+      {context.isLogin && (
+        <Route path="/AddProducts" component={AddProduct} exact />
+      )}
+      {context.isLogin && (
+        <Route path="/ContactUs" component={ContactUs} exact />
+      )}
+      {context.isLogin && (
+        <Route path="/ProductPage/:id" component={ProductPage} />
+      )}
+      {context.isLogin && <Route path="/About" component={About} />}
+    </BrowserRouter>
+  );
+};
+
 export default Index1;
