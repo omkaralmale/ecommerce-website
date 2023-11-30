@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Form, Button, Container, Card, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { AuthContext } from "./Store/ContextAPI";
+import NavBar from "../layout/NavBar";
+import Footer from "../layout/Footer";
+
 const Login = () => {
+  const context = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [action, setAction] = useState("LogIn");
@@ -22,7 +27,7 @@ const Login = () => {
     event.preventDefault();
     setLoading(true);
     if (action === "LogIn") {
-      URL =
+      var URL =
         "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBbyTlWC4cztAM-keqMmenrXxvAA5lUzBk";
     } else {
       URL =
@@ -36,18 +41,28 @@ const Login = () => {
         returnSecureToken: true,
       }),
       "Content-type": "application/json",
-    }).then((res) => {
-      if (res.ok) {
-        console.log("Done");
-        setLoading(false);
-      } else {
-        return res.json().then((data) => {
+    })
+      .then((res) => {
+        if (res.ok) {
+          console.log("Done");
+
           setLoading(false);
-          const errorMessage = data.error.message;
-          alert(errorMessage ? errorMessage : "Unknown Error");
-        });
-      }
-    });
+          return res.json();
+        } else {
+          return res.json().then((data) => {
+            setLoading(false);
+            const errorMessage = data.error.message;
+            throw new Error(errorMessage);
+          });
+        }
+      })
+      .then((data) => {
+        context.login(data.idToken);
+        localStorage.setItem("token", data.idToken);
+      })
+      .catch((error) => {
+        alert(error);
+      });
     setEmail("");
     setPassword("");
   };
@@ -67,6 +82,7 @@ const Login = () => {
 
   return (
     <>
+      {context.isLogin && <NavBar />}
       <Container>
         <Card style={cardStyle}>
           <Card.Body>
@@ -132,6 +148,7 @@ const Login = () => {
             </div>
           </Card.Body>
         </Card>
+        {context.isLogin && <Footer />}
       </Container>
     </>
   );

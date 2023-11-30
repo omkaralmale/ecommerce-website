@@ -11,16 +11,19 @@ import AddProduct from "./components/Product/addProduct/AddProduct.js";
 import ContactUs from "./components/ContactUs/ContactUs.js";
 import ProductPage from "./components/Pages/ProductPage.js";
 import Login from "./components/Auth/Login.js";
+import AuthContextProvider from "./components/Auth/Store/ContextAPI.js";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
-    <Route path="/About" component={About} exact />
-    <Route path="/Store" component={App} exact />
-    <Route path="/Home" component={Home} exact />
-    <Route path="/LogIn" component={Login} exact />
-    <Route path="/AddProducts" component={AddProduct} exact />
-    <Route path="/ContactUs" component={ContactUs} exact />
-    <Route path="/ProductPage/:id" component={ProductPage} />
-  </BrowserRouter>
+  <AuthContextProvider>
+    <BrowserRouter>
+      <Route path="/About" component={About} exact />
+      <Route path="/Store" component={App} exact />
+      <Route path="/Home" component={Home} exact />
+      <Route path="/LogIn" component={Login} exact />
+      <Route path="/AddProducts" component={AddProduct} exact />
+      <Route path="/ContactUs" component={ContactUs} exact />
+      <Route path="/ProductPage/:id" component={ProductPage} />
+    </BrowserRouter>
+  </AuthContextProvider>
 );
