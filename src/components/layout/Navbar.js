@@ -42,6 +42,9 @@ const NavBar = (props) => {
                 <Nav.Link>
                   <NavLink to="/Addproducts">Add Product</NavLink>
                 </Nav.Link>
+                <Nav.Link>
+                  <NavLink to="/ChangePassword">ChangePassword</NavLink>
+                </Nav.Link>
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>

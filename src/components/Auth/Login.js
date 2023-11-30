@@ -23,6 +23,9 @@ const Login = () => {
   const handleAction = () => {
     setAction(action === "LogIn" ? "SignUp" : "LogIn");
   };
+
+  const handleChangePassword = () => {};
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
@@ -83,6 +86,7 @@ const Login = () => {
   return (
     <>
       {context.isLogin && <NavBar />}
+
       <Container>
         <Card style={cardStyle}>
           <Card.Body>
@@ -140,6 +144,7 @@ const Login = () => {
                 {action === "LogIn" ? "Have Account" : "Back to Login"}
               </Link>
               <Link
+                onClick={handleChangePassword}
                 to="#"
                 style={{ color: "blue", textDecoration: "underline" }}
               >
@@ -148,8 +153,10 @@ const Login = () => {
             </div>
           </Card.Body>
         </Card>
-        {context.isLogin && <Footer />}
       </Container>
+
+      {/* {context.isLogin && <ChangePassword />} */}
+      {context.isLogin && <Footer />}
     </>
   );
 };
